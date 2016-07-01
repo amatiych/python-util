@@ -81,7 +81,7 @@ def dt_diff(ds1,ds2):
    if y1 == y2:
        return days_in_same_year(ds1,ds2)
 
-   years = y2-y1 
+   years = y2-y1  
    if years == 1:
       return days_span_one_year(ds1,ds2)
 
