@@ -1,25 +1,28 @@
+def gcd(a,b):
+        if a == 0:
+            return b
+        if b == 0:
+            return a
+
+        r = a % b
+        return gcd(b,r)
+		
 def fract(A):
         N = A[0]
         D = A[1]
-        d = 2
+        g = gcd (N,D)
+        return [N/g, D/g]
         
-        if N > D and N %D == 0:
-            return [N/D,1]
-        
-        if D > N and D % N == 0:
-            return [1, D/N]
-        
-        while d < min(N,D):
-            if N % d == 0 and D % d == 0:
-                N /= d
-                D /= d
-            d+=1
-        return [N,D]
 
 test = lambda A: print("%s = %s" % (A,fract(A)))
 
+test([3,7])
+test([7,3])
 test([10,5])
 test([8,12])
 test([4,6])
 test([200,40])
+
+g = gcd(36,48)
+print("gcd " ,g )
 
