@@ -7,6 +7,14 @@ graph = {
             
         }
 
+
+tree = {
+            'A':['B'],
+            'B':['C','D'],
+            'C':['E']
+
+       }
+
 def calc_routes(graph,start, end,path=[]):
     """
     walk the graph such as desribed above and calculate all routes
@@ -27,7 +35,27 @@ def calc_routes(graph,start, end,path=[]):
 
     return newpaths
 
+def walk_tree(tree,start,path=[]):
+    """
+        walk the tree as described above. the difference to the graph is that there is no end node"
+    """
+    path = path + [start]
+    if start not in tree:
+        return [path]
+
+    newbranches = []
+    for node in tree[start]:
+        if node not in path:
+            subbranches = walk_tree(tree,node,path)
+            for branch in subbranches:
+                newbranches.append(branch)
+
+    return newbranches
+ 
+
 
 if __name__ == '__main__':
     routes = calc_routes(graph,"A","F")
+    branches = walk_tree(tree,'A')
     print(routes)
+    print(branches)
