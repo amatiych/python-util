@@ -1,6 +1,17 @@
 import sys
 import logging
 
+def capture_ex(fun):
+    """
+        decorator to put try catch around a function call and print exception message
+    """
+    def wrapper(*args, **kwargs):
+        try:
+            return fun(*args,**kwargs)
+        except Exception as ex:
+            log.error("exception at {0} msg: {1}", fun, str(ex))
+    return wrapper
+
 def setup_logging(*,name,fileName, levelName=None):
 	root = logging.getLogger()
 	root.handlers = []
